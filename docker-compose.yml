@@ -1,0 +1,15 @@
+version: "3"
+services:
+  database:
+    image: "postgres:15.1"
+    container_name: "mypostgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - local_pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mypostgres
+volumes:
+  local_pgdata:
