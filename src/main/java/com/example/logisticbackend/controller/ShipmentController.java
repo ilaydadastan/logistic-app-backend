@@ -1,5 +1,6 @@
 package com.example.logisticbackend.controller;
 
+import com.example.logisticbackend.dto.ShipmentVM;
 import com.example.logisticbackend.model.Shipment;
 import com.example.logisticbackend.service.ShipmentService;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,8 @@ public class ShipmentController {
     }
 
     @PostMapping
-    public String saveShipment() {
-        shipmentService.createShipment();
+    public String saveShipment(@RequestBody ShipmentVM shipmentVM) {
+        shipmentService.createShipment(shipmentVM);
         return "shipment created";
     }
 }
