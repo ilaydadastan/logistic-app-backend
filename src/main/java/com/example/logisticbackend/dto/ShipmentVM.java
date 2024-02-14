@@ -10,7 +10,13 @@ import lombok.NoArgsConstructor;
 public class ShipmentVM {
     private String trackingId;
     private String content;
-    private CustomerVM sender;
-    private CustomerVM recipient;
+    private String senderFirstName;
+    private String senderLastName;
+    private String senderEmail;
+    private String senderAddress;
+    private String recipientFirstName;
+    private String recipientLastName;
+    private String recipientEmail;
+    private String recipientAddress;
 
 }

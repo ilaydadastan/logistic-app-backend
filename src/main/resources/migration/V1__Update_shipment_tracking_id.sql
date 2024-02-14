@@ -1,0 +1,1 @@
+ALTER TABLE shipments ADD UNIQUE (tracking_id);
