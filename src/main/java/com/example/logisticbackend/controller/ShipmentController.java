@@ -15,9 +15,9 @@ public class ShipmentController {
 
     private final ShipmentService shipmentService;
 
-    @GetMapping("/{id}")
-    public Shipment getShipment(@PathVariable Long id) {
-        Optional<Shipment> shipment = shipmentService.getShipment(id);
+    @GetMapping("/{trackingId}")
+    public Shipment getShipment(@PathVariable String trackingId) {
+        Optional<Shipment> shipment = shipmentService.getShipment(trackingId);
         return shipment.orElse(null);
     }
 

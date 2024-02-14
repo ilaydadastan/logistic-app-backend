@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -20,15 +21,23 @@ public class ShipmentService {
     private final CustomerRepository customerRepository;
 
     public void createShipment(ShipmentVM shipmentVM) {
-        Customer senderCustomer = new Customer(null, shipmentVM.getSender().getFirstName(), shipmentVM.getSender().getLastName(),
-                shipmentVM.getSender().getEmail(), shipmentVM.getSender().getAddress(), new HashSet<>(), new HashSet<>());
-        Customer recipientCustomer = new Customer(null, shipmentVM.getRecipient().getFirstName(), shipmentVM.getRecipient().getLastName(),
-                shipmentVM.getRecipient().getEmail(), shipmentVM.getRecipient().getAddress(), new HashSet<>(), new HashSet<>());
-        Shipment shipment = new Shipment(null, "1", shipmentVM.getContent(), ShipmentStatus.RECEIVED, senderCustomer, recipientCustomer);
+        Customer senderCustomer = new Customer(null, shipmentVM.getSenderFirstName(), shipmentVM.getSenderLastName(),
+                shipmentVM.getSenderEmail(), shipmentVM.getSenderAddress(), new HashSet<>(), new HashSet<>());
+        Customer recipientCustomer = new Customer(null, shipmentVM.getRecipientFirstName(), shipmentVM.getRecipientLastName(),
+                shipmentVM.getRecipientEmail(), shipmentVM.getRecipientAddress(), new HashSet<>(), new HashSet<>());
+        String trackingId = generateTrackingId();
+        Shipment shipment = new Shipment(null, trackingId, shipmentVM.getContent(), ShipmentStatus.RECEIVED, senderCustomer, recipientCustomer);
         shipmentRepository.save(shipment);
+
     }
 
-    public Optional<Shipment> getShipment(Long id) {
-        return shipmentRepository.findById(id);
+    public Optional<Shipment> getShipment(String trackingId) {
+        return shipmentRepository.findById(trackingId);
+    }
+
+
+    public static String generateTrackingId() {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
     }
 }
