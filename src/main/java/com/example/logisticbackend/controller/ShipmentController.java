@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,7 +17,7 @@ public class ShipmentController {
     private final ShipmentService shipmentService;
 
     @GetMapping("/{trackingId}")
-    public Shipment getShipment(@PathVariable String trackingId) {
+    public Shipment getShipment(@PathVariable UUID trackingId) {
         Optional<Shipment> shipment = shipmentService.getShipment(trackingId);
         return shipment.orElse(null);
     }
