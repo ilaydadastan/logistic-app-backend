@@ -1,13 +1,12 @@
 package com.example.logisticbackend.model;
 
 import com.example.logisticbackend.enums.ShipmentStatus;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "SHIPMENTS")
@@ -20,7 +19,7 @@ public class Shipment {
     @Column(name = "ID")
     private Long id;
     @Column(name = "TRACKING_ID")
-    private String trackingId;
+    private UUID trackingId;
     @Column(name = "CONTENT")
     private String content;
     @Column(name = "STATUS")

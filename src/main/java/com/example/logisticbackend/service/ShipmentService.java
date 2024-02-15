@@ -25,19 +25,19 @@ public class ShipmentService {
                 shipmentVM.getSenderEmail(), shipmentVM.getSenderAddress(), new HashSet<>(), new HashSet<>());
         Customer recipientCustomer = new Customer(null, shipmentVM.getRecipientFirstName(), shipmentVM.getRecipientLastName(),
                 shipmentVM.getRecipientEmail(), shipmentVM.getRecipientAddress(), new HashSet<>(), new HashSet<>());
-        String trackingId = generateTrackingId();
+        UUID trackingId = generateTrackingId();
         Shipment shipment = new Shipment(null, trackingId, shipmentVM.getContent(), ShipmentStatus.RECEIVED, senderCustomer, recipientCustomer);
         shipmentRepository.save(shipment);
 
     }
 
-    public Optional<Shipment> getShipment(String trackingId) {
-        return shipmentRepository.findById(trackingId);
+    public Optional<Shipment> getShipment(UUID trackingId) {
+        return shipmentRepository.findByTrackingId(trackingId);
     }
 
 
-    public static String generateTrackingId() {
-        UUID uuid = UUID.randomUUID();
-        return uuid.toString();
+    public static UUID generateTrackingId() {
+
+        return UUID.randomUUID();
     }
 }
