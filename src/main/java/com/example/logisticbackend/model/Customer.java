@@ -2,7 +2,9 @@ package com.example.logisticbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
@@ -22,6 +24,8 @@ public class Customer {
     private String lastName;
     @Column(name = "EMAIL")
     private String email;
+    @Column(name = "PASSWORD")
+    private String password;
     @Column(name = "ADDRESS")
     private String address;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "senderCustomer")

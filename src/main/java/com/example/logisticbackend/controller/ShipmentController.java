@@ -4,6 +4,7 @@ import com.example.logisticbackend.dto.ShipmentVM;
 import com.example.logisticbackend.model.Shipment;
 import com.example.logisticbackend.service.ShipmentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -26,5 +27,10 @@ public class ShipmentController {
     public String saveShipment(@RequestBody ShipmentVM shipmentVM) {
         shipmentService.createShipment(shipmentVM);
         return "shipment created";
+    }
+
+    @GetMapping
+    public String hello(Authentication authentication){
+        return "hello";
     }
 }

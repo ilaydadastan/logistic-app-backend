@@ -18,13 +18,12 @@ import java.util.UUID;
 public class ShipmentService {
 
     private final ShipmentRepository shipmentRepository;
-    private final CustomerRepository customerRepository;
 
     public void createShipment(ShipmentVM shipmentVM) {
         Customer senderCustomer = new Customer(null, shipmentVM.getSenderFirstName(), shipmentVM.getSenderLastName(),
-                shipmentVM.getSenderEmail(), shipmentVM.getSenderAddress(), new HashSet<>(), new HashSet<>());
+                shipmentVM.getSenderEmail(), shipmentVM.getSenderPassword(), shipmentVM.getSenderAddress(), new HashSet<>(), new HashSet<>());
         Customer recipientCustomer = new Customer(null, shipmentVM.getRecipientFirstName(), shipmentVM.getRecipientLastName(),
-                shipmentVM.getRecipientEmail(), shipmentVM.getRecipientAddress(), new HashSet<>(), new HashSet<>());
+                shipmentVM.getRecipientEmail(), shipmentVM.getRecipientPassword(), shipmentVM.getRecipientAddress(), new HashSet<>(), new HashSet<>());
         UUID trackingId = generateTrackingId();
         Shipment shipment = new Shipment(null, trackingId, shipmentVM.getContent(), ShipmentStatus.RECEIVED, senderCustomer, recipientCustomer);
         shipmentRepository.save(shipment);
