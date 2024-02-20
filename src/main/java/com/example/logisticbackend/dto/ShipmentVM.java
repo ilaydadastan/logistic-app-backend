@@ -15,10 +15,12 @@ public class ShipmentVM {
     private String senderFirstName;
     private String senderLastName;
     private String senderEmail;
+    private String senderPassword;
     private String senderAddress;
     private String recipientFirstName;
     private String recipientLastName;
     private String recipientEmail;
     private String recipientAddress;
+    private String recipientPassword;
 
 }
