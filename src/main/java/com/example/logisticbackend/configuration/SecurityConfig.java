@@ -10,7 +10,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -22,6 +24,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -40,7 +43,7 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider())
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(http)))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(http), userService))
-                .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS));
+                .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS)).httpBasic(Customizer.withDefaults());
 
         return http.build();
     }

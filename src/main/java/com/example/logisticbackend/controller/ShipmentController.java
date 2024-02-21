@@ -4,6 +4,7 @@ import com.example.logisticbackend.dto.ShipmentVM;
 import com.example.logisticbackend.model.Shipment;
 import com.example.logisticbackend.service.ShipmentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,7 @@ public class ShipmentController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ROLE_COURIER')")
     public String hello(Authentication authentication){
         return "hello";
     }
