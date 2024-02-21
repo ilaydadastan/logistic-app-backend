@@ -4,7 +4,6 @@ import com.example.logisticbackend.dto.ShipmentVM;
 import com.example.logisticbackend.enums.ShipmentStatus;
 import com.example.logisticbackend.model.Shipment;
 import com.example.logisticbackend.model.Customer;
-import com.example.logisticbackend.repository.CustomerRepository;
 import com.example.logisticbackend.repository.ShipmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
