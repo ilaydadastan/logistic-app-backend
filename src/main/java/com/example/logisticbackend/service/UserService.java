@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +28,7 @@ public class UserService {
                 passwordEncoder.encode(userCreateRequestVM.getPassword()),
                 userCreateRequestVM.getFirstname(),
                 userCreateRequestVM.getLastname(),
-                userCreateRequestVM.getEmail());
+                userCreateRequestVM.getEmail(), new HashSet<>());
         return userRepository.save(user);
     }
 }
